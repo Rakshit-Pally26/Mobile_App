@@ -1,0 +1,169 @@
+{% extends "base.html"%}
+{% block content%}
+
+<!-- Begin Page Content -->
+<div class=""> 
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Field Data Collection</h1>
+
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate CVS Report</a>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <!-- Card Header - Accordion -->
+    <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
+      aria-expanded="true" aria-controls="collapseCardExample">
+      <h6 class="m-0 font-weight-bold text-primary">Flood Data collection</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+    <div class="collapse show" id="collapseCardExample">
+    <form action="/fais/userdata" method="post" name="userdataform">
+      {% csrf_token %}
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group mb-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">First Name</span>
+              </div>
+              <input name="first_name" type="text" class="form-control" required placeholder="First Name" aria-label="name"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group mb-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Last Name</span>
+              </div>
+              <input name="last_name" type="text" class="form-control" required placeholder="Last Name" aria-label="lastname"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="input-group mb-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Email ID</span>
+                </div>
+                <input name="email" type="email" class="form-control" required placeholder="Email Address" aria-label="email"
+                  aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group mb-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Location</span>
+                </div>
+                <input name="location" type="text" class="form-control" required placeholder="Location" aria-label="location"
+                  aria-describedby="basic-addon1">
+              </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="input-group mb-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Latitude</span>
+                </div>
+                <input name="latitude" type="text" class="form-control" required placeholder="Latitude" aria-label="latitude"
+                  aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group mb-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Longitude</span>
+                </div>
+                <input name="longitude" type="text" class="form-control" required placeholder="Longitude" aria-label="longitude"
+                  aria-describedby="basic-addon1">
+              </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="input-group mb-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Time Stamp</span>
+                </div>
+                <input name="time_stamp" type="time" class="form-control" required placeholder="TimeStamp" aria-label="time_stamp"
+                  aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group mb-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Date</span>
+                </div>
+                <input name="date" type="date" class="form-control" required placeholder="Date" aria-label="date"
+                  aria-describedby="basic-addon1">
+              </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="input-group mb-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Flood Depth (in ft)</span>
+                </div>
+                <input name="flood_depth" type="number" class="form-control" required min="0" placeholder="Flood Depth" aria-label="flodd_depth"
+                  aria-describedby="basic-addon1">
+              </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="input-group mb-6">
+                <textarea name="additional_info" class="form-control" required placeholder="Additional Info" cols="15" rows="5"></textarea>
+              </div>
+            </div>
+        </div>
+       <br>
+      <div class="card-footer">
+        <button type="submit"  class="btn btn-primary">
+          <i class="fas fa-check"></i>  Submit
+        </button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+<div class="card shadow mb-4">
+    <!-- Card Header - Accordion -->
+    <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
+      aria-expanded="true" aria-controls="collapseCardExample">
+      <h6 class="m-0 font-weight-bold text-primary">Upload Media</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+    <br>
+    <div class="row">
+            <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="offset-sm-1">
+                <input type="file" name="document" style="padding-bottom: 18px;">
+
+                    <button type="submit" class="btn btn-primary ">
+                        <i class="fas fa-file-upload"></i>  Upload Documents
+                    </button>
+                </div>  
+            </form>
+        <br>
+    </div>
+    <br>
+    <div class= "card-footer">
+        {% if url %}
+        <p>Uploaded File: <a href="{{ url }}"> {{ url }}</a></p>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock content %}
